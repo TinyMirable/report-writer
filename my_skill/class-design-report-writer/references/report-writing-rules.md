@@ -8,6 +8,8 @@ Write from the target project's actual source code and verification artifacts. I
 
 Write the final Markdown and DOCX reports as a course design final report from the designer's point of view. Do not expose the analysis process.
 
+Before drafting final prose, read `references/report-style-guide.md` and apply its 表述风格约束. The guide is the detailed style reference for concrete expression, concise wording, term consistency, evidence calibration, and final language checks.
+
 Use design statements:
 
 - `本系统采用...`
@@ -25,6 +27,16 @@ Do not use analyzer or AI-process statements in the final report:
 - `GitHub项目...`
 
 Avoid uncertainty words such as `可能`, `推测`, `似乎`, `大概`, and `疑似`. If evidence cannot support a claim, omit the claim or mark it as a design item that still needs supplementation. Never invent modules, features, technologies, UML relationships, data flow, tests, screenshots, or performance data.
+
+## Expression Style
+
+Write for a course design evaluator who has not opened the repository. First state the design purpose, then explain the mechanism and evidence.
+
+- 具体表达: name the actual module, function, page, API, table, command, diagram, or test result.
+- 删掉空话套话: remove generic sentences such as `具有重要意义`, `进一步提升了系统水平`, `总的来说`, and `效果较好` unless the sentence gives concrete evidence.
+- 术语一致: use the same names for actors, modules, pages, APIs, tables, diagrams, and tests throughout the report.
+- Avoid unsupported claims about performance, security, usability, reliability, or completeness.
+- Prefer paragraphs for explanation; use bullet lists only when the content is a real list.
 
 ## 选题背景
 

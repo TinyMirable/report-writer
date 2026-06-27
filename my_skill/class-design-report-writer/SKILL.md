@@ -45,6 +45,7 @@ Read only the references needed for the current phase:
 
 - For report sections and formatting, read `references/report-template.md`.
 - For chapter content, figure captions, code blocks, and DOCX expectations, read `references/report-writing-rules.md`.
+- Before drafting or revising final report prose, read `references/report-style-guide.md`.
 - For required diagrams and layout quality, read `references/diagram-policy.md`.
 - Before drawing any report diagram, read `references/diagram-layout-policy.md`.
 - Before drawing UML diagrams such as 用例图、类图、活动图、时序图、组件图、包图、部署图, read `references/uml-diagram-standard.md`.

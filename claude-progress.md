@@ -69,3 +69,15 @@
 - 更新过的文件或工件：my_skill/class-design-report-writer/SKILL.md、my_skill/class-design-report-writer/references/diagram-policy.md、my_skill/class-design-report-writer/references/diagram-layout-policy.md、my_skill/class-design-report-writer/references/uml-diagram-standard.md、my_skill/class-design-report-writer/references/system-architecture-diagram-standard.md、my_skill/class-design-report-writer/scripts/validate_skill.py、feature_list.json、claude-progress.md。
 - 已知风险或未解决问题：仓库中曾出现 Word 临时锁文件 my_skill/class-design-report-writer/assets/~$urse-design-report-template.docx；本轮将保留其删除状态，不再作为 skill 资产。
 - 下一步最佳动作：提交本轮 reference 接入变更。
+
+### Session 006
+
+- 日期：2026-06-27
+- 本轮目标：根据 spec/课程设计报告写作skillv1.2.md 和 spec/表述风格约束.md，优化 skill 生成报告时的表述风格。
+- 已完成：新增 chat-004 功能项；阅读 v1.2 需求和表述风格约束；扩展 validate_skill.py，要求检查 report-style-guide.md、SKILL 路由和 report-writing-rules.md 风格关键词；新增 my_skill/class-design-report-writer/references/report-style-guide.md，筛选适合课程设计报告的读者视角、具体表达、删掉空话套话、术语一致、事实依据、图文说明和最终语言检查规则；更新 SKILL.md 和 report-writing-rules.md 的风格指南入口。
+- 运行过的验证：python my_skill/class-design-report-writer/scripts/validate_skill.py my_skill/class-design-report-writer；python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py my_skill/class-design-report-writer；python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py --check my_skill/class-design-report-writer；python my_skill/class-design-report-writer/scripts/validate_skill.py C:/Users/SKY/.codex/skills/class-design-report-writer；$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py my_skill/class-design-report-writer；$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py C:/Users/SKY/.codex/skills/class-design-report-writer。
+- 已记录证据：feature_list.json 已标记 chat-004 为 passing，并记录红灯失败、风格指南新增、路由接入、仓库副本验证通过、同步一致性通过和安装副本验证通过证据。
+- 提交记录：本轮提交待创建。
+- 更新过的文件或工件：spec/课程设计报告写作skillv1.2.md、spec/表述风格约束.md、my_skill/class-design-report-writer/SKILL.md、my_skill/class-design-report-writer/references/report-writing-rules.md、my_skill/class-design-report-writer/references/report-style-guide.md、my_skill/class-design-report-writer/scripts/validate_skill.py、feature_list.json、claude-progress.md。
+- 已知风险或未解决问题：spec/表述风格约束.md 是通用英文写作规则集合，内容较长；本轮未全量搬入 skill，只保留课程设计报告直接适用的规则。
+- 下一步最佳动作：提交本轮表述风格优化变更。
