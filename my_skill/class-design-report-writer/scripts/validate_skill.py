@@ -61,6 +61,10 @@ REQUIRED_REFERENCE_TERMS = {
         "用户活动图",
         "关键功能时序图",
         "系统约束和规范",
+        "designer's point of view",
+        "从源码可以看出",
+        "AI分析得到",
+        "Never invent modules",
     ],
     "references/diagram-policy.md": [
         "PlantUML",

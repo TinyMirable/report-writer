@@ -50,7 +50,7 @@
 
 - 日期：2026-06-27
 - 本轮目标：根据用户新增的 spec 需求，优化课程设计报告撰写 skill 的 DOCX 模板使用规则和绘图规范。
-- 已完成：新增 chat-002 功能项；更新 SKILL.md，明确不要修改模板第一页和第二页、第三页开始撰写正文、只在既有章节标题下方填充正文；更新 report-template.md、report-writing-rules.md、diagram-policy.md，补充系统功能结构图、系统组件图、用户活动图、关键功能时序图、PlantUML/D2 工具选择、UML 记法要求、系统架构图绘制准则摘要；扩展 validate_skill.py 检查新增规则关键词；同步安装副本到 C:\Users\SKY\.codex\skills\class-design-report-writer。
+- 已完成：新增 chat-002 功能项；更新 SKILL.md，明确不要修改模板第一页和第二页、第三页开始撰写正文、只在既有章节标题下方填充正文；更新 report-template.md、report-writing-rules.md、diagram-policy.md，补充系统功能结构图、系统组件图、用户活动图、关键功能时序图、PlantUML/D2 工具选择、UML 记法要求、系统架构图绘制准则摘要；吸收课程设计报告写作规范，要求最终报告使用设计者视角并避免 AI/源码分析痕迹；扩展 validate_skill.py 检查新增规则关键词；同步安装副本到 C:\Users\SKY\.codex\skills\class-design-report-writer。
 - 运行过的验证：python my_skill/class-design-report-writer/scripts/validate_skill.py my_skill/class-design-report-writer；python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py my_skill/class-design-report-writer；python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py --check my_skill/class-design-report-writer；python my_skill/class-design-report-writer/scripts/validate_skill.py C:/Users/SKY/.codex/skills/class-design-report-writer；$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py my_skill/class-design-report-writer；$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py C:/Users/SKY/.codex/skills/class-design-report-writer。
 - 已记录证据：feature_list.json 已标记 chat-002 为 passing 并记录红灯失败、规则落地和验证通过证据。
 - 提交记录：本轮提交待创建。

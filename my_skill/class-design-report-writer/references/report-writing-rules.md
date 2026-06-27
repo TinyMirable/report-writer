@@ -4,6 +4,28 @@
 
 Write from the target project's actual source code and verification artifacts. If a feature, test, route, class, API, or data model cannot be found in the project, do not describe it as implemented.
 
+## Final Report Voice
+
+Write the final Markdown and DOCX reports as a course design final report from the designer's point of view. Do not expose the analysis process.
+
+Use design statements:
+
+- `本系统采用...`
+- `系统将...划分为...`
+- `为提高系统可维护性，系统采用...`
+
+Do not use analyzer or AI-process statements in the final report:
+
+- `从源码可以看出...`
+- `根据代码可以发现...`
+- `阅读项目后...`
+- `经过分析...`
+- `AI分析得到...`
+- `仓库中...`
+- `GitHub项目...`
+
+Avoid uncertainty words such as `可能`, `推测`, `似乎`, `大概`, and `疑似`. If evidence cannot support a claim, omit the claim or mark it as a design item that still needs supplementation. Never invent modules, features, technologies, UML relationships, data flow, tests, screenshots, or performance data.
+
 ## 选题背景
 
 Include:
@@ -99,3 +121,13 @@ Write a grounded reflection. It may include:
 - Improvements that could be made with more time.
 
 Do not invent personal experiences; keep reflection consistent with the project work and evidence.
+
+## Final Language Check
+
+Before delivery, scan the final Markdown and DOCX text for analysis traces and informal language. The report must:
+
+- Use designer viewpoint throughout.
+- Explain why each technical choice supports the design.
+- Describe implementation ideas instead of line-by-line code reading.
+- Provide text before and after every figure.
+- Avoid `AI`, `模型`, `阅读源码`, `从源码可以看出`, `根据代码`, `可以看到`, `可以发现`, `可能`, `推测`, and similar wording in the final report body.

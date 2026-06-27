@@ -62,6 +62,7 @@
         "SKILL.md 已新增 DOCX 模板处理规则：不要修改模板第一页、不要修改模板第二页、第三页开始撰写正文、只在既有章节标题下方填充正文。",
         "report-template.md 已新增 DOCX 填充边界，明确保留既有章节标题并在标题下插入正文、图片、表格、代码块和图表说明。",
         "report-writing-rules.md 已新增系统功能结构图、系统组件图、用户活动图、关键功能时序图、系统约束和规范等正文要求。",
+        "report-writing-rules.md 已吸收课程设计报告写作规范，要求最终报告使用设计者视角，禁止出现 AI 分析痕迹、源码阅读痕迹和不确定性表达。",
         "diagram-policy.md 已新增必需图清单、PlantUML/D2 工具选择、UML 记法要求和系统架构图绘制准则摘要。",
         "验证通过：Skill validation passed: my_skill\\class-design-report-writer",
         "同步完成并通过一致性检查：Skill sync check passed: C:\\Users\\SKY\\.codex\\skills\\class-design-report-writer",
