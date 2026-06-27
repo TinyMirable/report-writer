@@ -1,5 +1,15 @@
 # Diagram Policy
 
+## Reference Routing
+
+Use this file as the diagram checklist and routing map.
+
+- Read `references/diagram-layout-policy.md` before drawing any diagram or exporting any diagram image.
+- Read `references/uml-diagram-standard.md` before drawing UML diagrams, including 用例图、类图、用户活动图、关键功能时序图、系统组件图、包图、部署图、状态图.
+- Read `references/system-architecture-diagram-standard.md` before drawing 系统架构图 or any D2 architecture/infrastructure diagram.
+- Keep editable diagram source files and exported images together in the report workspace.
+- Do not rely on this summary alone when creating final diagrams; use the full reference that matches the diagram type.
+
 ## Required Diagrams
 
 Produce at least:

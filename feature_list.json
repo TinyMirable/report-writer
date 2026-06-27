@@ -70,6 +70,36 @@
         "官方 quick_validate.py 在 PYTHONUTF8=1 下对仓库副本和安装副本均输出：Skill is valid!"
       ],
       "notes": "本功能只覆盖新增需求的 skill 指导、引用规则、验证脚本和安装副本同步，不重写已有 skill 架构。spec/课程设计报告撰写skill.md 中的系统架构图准则文件名与实际文件 spec/系统架构图绘制参考.md 存在命名差异，本轮已按实际文件内容吸收规则。"
+    },
+    {
+      "id": "chat-003",
+      "priority": 3,
+      "area": "skill-reference-routing",
+      "title": "将完整绘图标准作为 skill 引用文档",
+      "user_visible_behavior": "使用课程设计报告撰写 skill 的智能体在绘制 UML 图、系统架构图和其他报告图时，可以按需读取 skill 内置的完整 UML 图绘制标准、系统架构图绘制参考和绘图布局准则，而不只依赖摘要规则。",
+      "status": "passing",
+      "verification": [
+        "python my_skill/class-design-report-writer/scripts/validate_skill.py my_skill/class-design-report-writer",
+        "python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py my_skill/class-design-report-writer",
+        "python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py --check my_skill/class-design-report-writer",
+        "python my_skill/class-design-report-writer/scripts/validate_skill.py C:/Users/SKY/.codex/skills/class-design-report-writer",
+        "$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py my_skill/class-design-report-writer",
+        "$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py C:/Users/SKY/.codex/skills/class-design-report-writer"
+      ],
+      "evidence": [
+        "红灯验证已运行：扩展 validate_skill.py 后，当前 skill 因缺少 references/diagram-layout-policy.md、references/uml-diagram-standard.md、references/system-architecture-diagram-standard.md 以及 SKILL/diagram-policy 路由说明而失败。",
+        "已新增 my_skill/class-design-report-writer/references/uml-diagram-standard.md，内容来自 spec/UML图绘制标准.md。",
+        "已新增 my_skill/class-design-report-writer/references/system-architecture-diagram-standard.md，内容来自 spec/系统架构图绘制参考.md。",
+        "已新增 my_skill/class-design-report-writer/references/diagram-layout-policy.md，内容来自 spec/绘图准则.md。",
+        "SKILL.md 已新增绘图阶段按需读取 reference 的路由说明。",
+        "diagram-policy.md 已新增 Reference Routing，要求绘图前按图类型读取完整标准。",
+        "验证通过：Skill validation passed: my_skill\\class-design-report-writer",
+        "官方 quick_validate.py 在 PYTHONUTF8=1 下对仓库副本输出：Skill is valid!",
+        "同步完成并通过一致性检查：Skill sync check passed: C:\\Users\\SKY\\.codex\\skills\\class-design-report-writer",
+        "安装副本结构校验通过：Skill validation passed: C:\\Users\\SKY\\.codex\\skills\\class-design-report-writer",
+        "官方 quick_validate.py 在 PYTHONUTF8=1 下对安装副本输出：Skill is valid!"
+      ],
+      "notes": "本功能保留 diagram-policy.md 作为绘图摘要和路由入口，将完整标准作为按需 reference 交付，避免 SKILL.md 过长。"
     }
   ]
 }

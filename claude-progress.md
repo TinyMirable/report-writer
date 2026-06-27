@@ -57,3 +57,15 @@
 - 更新过的文件或工件：my_skill/class-design-report-writer/SKILL.md、my_skill/class-design-report-writer/references/report-template.md、my_skill/class-design-report-writer/references/report-writing-rules.md、my_skill/class-design-report-writer/references/diagram-policy.md、my_skill/class-design-report-writer/scripts/validate_skill.py、feature_list.json、claude-progress.md、C:\Users\SKY\.codex\skills\class-design-report-writer。
 - 已知风险或未解决问题：spec/课程设计报告撰写skill.md 中写的是 `系统架构图绘制准则.md`，仓库实际文件为 `spec/系统架构图绘制参考.md`；本轮已按实际文件内容吸收规则，但文件名差异仍保留在用户改动中。
 - 下一步最佳动作：提交本轮 skill 优化变更，供用户审阅。
+
+### Session 005
+
+- 日期：2026-06-27
+- 本轮目标：将 UML 图绘制标准、系统架构图绘制参考和绘图准则作为 skill 内置 reference，使 agent 绘图时能按需读取完整标准。
+- 已完成：新增 chat-003 功能项；扩展 validate_skill.py，要求检查 diagram-layout-policy.md、uml-diagram-standard.md、system-architecture-diagram-standard.md 和 SKILL/diagram-policy 路由说明；把 spec/UML图绘制标准.md、spec/系统架构图绘制参考.md、spec/绘图准则.md 复制到 my_skill/class-design-report-writer/references/；更新 SKILL.md 和 diagram-policy.md，明确绘图前按图类型读取完整参考文档。
+- 运行过的验证：python my_skill/class-design-report-writer/scripts/validate_skill.py my_skill/class-design-report-writer；python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py my_skill/class-design-report-writer；python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py --check my_skill/class-design-report-writer；python my_skill/class-design-report-writer/scripts/validate_skill.py C:/Users/SKY/.codex/skills/class-design-report-writer；$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py my_skill/class-design-report-writer；$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py C:/Users/SKY/.codex/skills/class-design-report-writer。
+- 已记录证据：feature_list.json 已标记 chat-003 为 passing 并记录红灯失败、仓库副本验证通过、同步一致性通过、安装副本验证通过证据。
+- 提交记录：本轮提交待创建。
+- 更新过的文件或工件：my_skill/class-design-report-writer/SKILL.md、my_skill/class-design-report-writer/references/diagram-policy.md、my_skill/class-design-report-writer/references/diagram-layout-policy.md、my_skill/class-design-report-writer/references/uml-diagram-standard.md、my_skill/class-design-report-writer/references/system-architecture-diagram-standard.md、my_skill/class-design-report-writer/scripts/validate_skill.py、feature_list.json、claude-progress.md。
+- 已知风险或未解决问题：仓库中曾出现 Word 临时锁文件 my_skill/class-design-report-writer/assets/~$urse-design-report-template.docx；本轮将保留其删除状态，不再作为 skill 资产。
+- 下一步最佳动作：提交本轮 reference 接入变更。
