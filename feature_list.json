@@ -41,7 +41,34 @@
         "模板资产存在且非空：my_skill/class-design-report-writer/assets/course-design-report-template.docx，87770 bytes"
       ],
       "notes": "功能已实现并通过验证。直接运行 quick_validate.py 时 Windows 默认 GBK 编码会读取 UTF-8 skill 文件失败；设置 PYTHONUTF8=1 后校验通过。"
+    },
+    {
+      "id": "chat-002",
+      "priority": 2,
+      "area": "skill-requirements-update",
+      "title": "优化模板填充和绘图规范要求",
+      "user_visible_behavior": "使用课程设计报告撰写 skill 的智能体明确知道 DOCX 模板前两页不修改、第三页起只在既有章节标题下方填充正文，并能按新增的 UML、系统架构图和绘图准则生成并检查必需图。",
+      "status": "passing",
+      "verification": [
+        "python my_skill/class-design-report-writer/scripts/validate_skill.py my_skill/class-design-report-writer",
+        "python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py my_skill/class-design-report-writer",
+        "python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py --check my_skill/class-design-report-writer",
+        "python my_skill/class-design-report-writer/scripts/validate_skill.py C:/Users/SKY/.codex/skills/class-design-report-writer",
+        "$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py my_skill/class-design-report-writer",
+        "$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py C:/Users/SKY/.codex/skills/class-design-report-writer"
+      ],
+      "evidence": [
+        "红灯验证已运行：更新验证脚本后，当前 skill 因缺少模板第三页填充规则、扩展图清单、PlantUML/D2 等新增需求关键词而失败。",
+        "SKILL.md 已新增 DOCX 模板处理规则：不要修改模板第一页、不要修改模板第二页、第三页开始撰写正文、只在既有章节标题下方填充正文。",
+        "report-template.md 已新增 DOCX 填充边界，明确保留既有章节标题并在标题下插入正文、图片、表格、代码块和图表说明。",
+        "report-writing-rules.md 已新增系统功能结构图、系统组件图、用户活动图、关键功能时序图、系统约束和规范等正文要求。",
+        "diagram-policy.md 已新增必需图清单、PlantUML/D2 工具选择、UML 记法要求和系统架构图绘制准则摘要。",
+        "验证通过：Skill validation passed: my_skill\\class-design-report-writer",
+        "同步完成并通过一致性检查：Skill sync check passed: C:\\Users\\SKY\\.codex\\skills\\class-design-report-writer",
+        "安装副本结构校验通过：Skill validation passed: C:\\Users\\SKY\\.codex\\skills\\class-design-report-writer",
+        "官方 quick_validate.py 在 PYTHONUTF8=1 下对仓库副本和安装副本均输出：Skill is valid!"
+      ],
+      "notes": "本功能只覆盖新增需求的 skill 指导、引用规则、验证脚本和安装副本同步，不重写已有 skill 架构。spec/课程设计报告撰写skill.md 中的系统架构图准则文件名与实际文件 spec/系统架构图绘制参考.md 存在命名差异，本轮已按实际文件内容吸收规则。"
     }
-    
   ]
 }

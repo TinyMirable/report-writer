@@ -28,6 +28,17 @@ Treat the user's project repository as the only source of truth. Do not invent f
 
 Do not proceed from analysis to report writing until the `tmp/course-report-facts/` files exist and contain source-backed evidence.
 
+## DOCX Template Handling
+
+Use `assets/course-design-report-template.docx` as a fill-in template, not as a document to restructure.
+
+- 不要修改模板第一页: it is the cover page.
+- 不要修改模板第二页: it is the personal/student information page.
+- Start writing report body content from 第三页.
+- Preserve the existing chapter headings in the template: `一、选题背景`, `二、方案论证(设计理念)`, `三、过程论述`, `四、结果分析`, and `五、课程设计总结`.
+- 只在既有章节标题下方填充正文. Do not duplicate, rename, delete, or reorder the template headings unless the user explicitly asks.
+- Insert figures, tables, captions, and code excerpts under the matching existing chapter heading.
+
 ## References
 
 Read only the references needed for the current phase:
@@ -42,7 +53,7 @@ Read only the references needed for the current phase:
 The final report must include:
 
 - 选题背景：project problem, technical requirements, and guiding idea.
-- 方案论证(设计理念)：requirements analysis, use case diagram, system constraints, architecture and technology choices, top-level/level-1/level-2 data flow, package/module design, class/object design when applicable.
+- 方案论证(设计理念)：requirements analysis, standard use case diagram, system functionality structure diagram, system component diagram, user activity diagram, key function sequence diagram, system constraints and norms, architecture and technology choices, top-level/level-1/level-2 data flow, package/module design, class/object design when applicable.
 - 过程论述：implementation process, core logic explanation, core code flowchart, key source code excerpts, and text before and after every figure.
 - 结果分析：testing method, purpose, actual results, screenshots for frontend projects or result tables for non-frontend projects.
 - 课程设计总结：project gains, encountered problems, debugging and implementation reflections.
@@ -52,6 +63,10 @@ The final report must include:
 At minimum, produce:
 
 - 用例图
+- 系统功能结构图
+- 系统组件图
+- 用户活动图
+- 关键功能时序图
 - 系统架构图
 - 顶层数据流图
 - 一层数据流图
@@ -60,6 +75,8 @@ At minimum, produce:
 - 核心代码流程图
 
 Optional diagrams include class diagrams, ER diagrams, deployment diagrams, page flow diagrams, module dependency diagrams, or sequence diagrams when the project supports them.
+
+Use PlantUML for UML diagrams such as 用例图, 类图, 用户活动图, 关键功能时序图, 组件图, 包图, 部署图, and 状态图. Use D2 for 系统架构图 and other architecture, infrastructure, enterprise, data pipeline, or agent architecture diagrams. Check every exported diagram against `references/diagram-policy.md` before inserting it into the report.
 
 ## Output Checklist
 
@@ -72,4 +89,3 @@ Before finishing, confirm:
 - Markdown report exists.
 - DOCX report exists and follows the template formatting as closely as the environment allows.
 - `06-report-evidence-map.md` maps report sections to evidence.
-

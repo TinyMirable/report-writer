@@ -23,16 +23,57 @@ REQUIRED_FILES = [
 
 REQUIRED_SKILL_TERMS = [
     "tmp/course-report-facts",
+    "不要修改模板第一页",
+    "不要修改模板第二页",
+    "第三页",
+    "只在既有章节标题下方填充正文",
     "用例图",
+    "系统功能结构图",
+    "系统组件图",
+    "用户活动图",
+    "关键功能时序图",
     "系统架构图",
     "顶层数据流图",
     "一层数据流图",
     "二层数据流图",
     "包图",
     "核心代码流程图",
+    "PlantUML",
+    "D2",
     "Markdown",
     "DOCX",
 ]
+
+REQUIRED_REFERENCE_TERMS = {
+    "references/report-template.md": [
+        "不要修改模板第一页",
+        "不要修改模板第二页",
+        "第三页",
+        "只在既有章节标题下方填充正文",
+        "一、选题背景",
+        "二、方案论证(设计理念)",
+        "三、过程论述",
+        "四、结果分析",
+    ],
+    "references/report-writing-rules.md": [
+        "系统功能结构图",
+        "系统组件图",
+        "用户活动图",
+        "关键功能时序图",
+        "系统约束和规范",
+    ],
+    "references/diagram-policy.md": [
+        "PlantUML",
+        "D2",
+        "用例图",
+        "系统架构图",
+        "系统功能结构图",
+        "用户活动图",
+        "关键功能时序图",
+        "系统组件图",
+        "系统架构图绘制准则",
+    ],
+}
 
 
 def read_text(path: Path) -> str:
@@ -85,6 +126,14 @@ def validate_skill(skill_dir: Path) -> list[str]:
             if term not in skill_text:
                 errors.append(f"SKILL.md must mention required term: {term}")
 
+    for rel_path, terms in REQUIRED_REFERENCE_TERMS.items():
+        path = skill_dir / rel_path
+        if path.exists():
+            text = read_text(path)
+            for term in terms:
+                if term not in text:
+                    errors.append(f"{rel_path} must mention required term: {term}")
+
     openai_yaml = skill_dir / "agents/openai.yaml"
     if openai_yaml.exists():
         openai_text = read_text(openai_yaml)
@@ -113,4 +162,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

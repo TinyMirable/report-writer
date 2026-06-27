@@ -20,9 +20,13 @@ Include requirements analysis and system design in this chapter.
 Requirements analysis must include:
 
 - Functional goal summary.
-- Required use case diagram.
+- Required use case diagram / 用例图.
+- Required system functionality structure diagram / 系统功能结构图.
+- Required system component diagram / 系统组件图.
+- Required user activity diagram / 用户活动图.
+- Required key function sequence diagram / 关键功能时序图.
 - System boundary.
-- System constraints and norms.
+- System constraints and norms / 系统约束和规范.
 - Security requirements.
 - Data integrity requirements.
 - Runtime environment.
@@ -37,6 +41,8 @@ System design must include:
 - Required package diagram.
 - Code structure explanation.
 - Class and object design if the project language and architecture use classes or equivalent domain objects.
+
+Place all of the above under the existing `二、方案论证(设计理念)` heading in the DOCX template. Do not create a separate top-level requirements-analysis chapter.
 
 ## 过程论述
 
@@ -55,12 +61,16 @@ Implementation discussion must include:
 - Key logic source code excerpts.
 - Explanation of the source code's role in the system.
 
+If the project uses object-oriented code, include a class diagram for the key classes and explain class responsibilities and implementation ideas. If the project does not use object-oriented code, state the evidence and use package/module, function-flow, or component diagrams instead.
+
 Code formatting in DOCX:
 
 - Font: Consolas or Cascadia Code.
 - Size: 10.5 pt.
 - Background: light gray or dark gray.
 - Preserve indentation.
+
+Place this content under the existing `三、过程论述` heading in the DOCX template.
 
 ## 结果分析
 
@@ -76,6 +86,8 @@ For non-frontend projects:
 - Include a key result table and command output summary.
 - Explain command, input, expected result, actual result, and conclusion.
 
+Place this content under the existing `四、结果分析` heading in the DOCX template.
+
 ## 课程设计总结
 
 Write a grounded reflection. It may include:
@@ -87,4 +99,3 @@ Write a grounded reflection. It may include:
 - Improvements that could be made with more time.
 
 Do not invent personal experiences; keep reflection consistent with the project work and evidence.
-
