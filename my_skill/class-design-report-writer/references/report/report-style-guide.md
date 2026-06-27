@@ -88,22 +88,33 @@ Examples:
 
 Every figure must have text before and after it.
 
-- Before the figure: explain why the diagram is used.
+- Before the figure: explain why the diagram is used. 图前说明必须起承上启下，先承接当前章节的设计问题、分析思路或实现目标，再自然引出图像。
 - After the figure: explain what the diagram shows and how the parts cooperate.
 - Do not write `从图中可以看出`. Use `图中展示` or directly describe the relationship.
+- Do not write stiff placeholders such as `为说明系统组件图所对应的设计内容，报告插入如下图示` or lazy evidence disclaimers such as `图中内容均来自项目的`.
+- Do not introduce figures as an isolated formatting action. The paragraph above the image should explain what should be designed, why that view is useful, how the design is analyzed, or what result the figure helps display.
 
 Prefer:
 
 - `为说明用户与系统功能之间的交互关系，绘制系统用例图。`
 - `图中展示管理员和普通用户两个参与者。管理员负责用户管理和数据维护，普通用户完成信息查询和业务提交。`
+- `根据原始需求，系统需要区分普通用户和管理员两类操作边界，因此用例图先梳理参与者与功能之间的关系。`
+
+Avoid:
+
+- `为说明系统组件图所对应的设计内容，报告插入如下图示。`
+- `图中内容均来自项目的源码结构。`
+- `下面放一张系统组件图。`
 
 ## Final Language Check
 
 Before delivery, run a final language pass on the Markdown and DOCX report:
 
 - Remove AI or analysis traces: `AI`, `模型`, `阅读源码`, `根据代码`, `从源码可以看出`, `经过分析`, `可以发现`.
+- Remove figure filler: `为说明系统组件图所对应的设计内容，报告插入如下图示`, `图中内容均来自项目的`, `如下图所示` when the sentence has no design reasoning.
 - Remove uncertainty when unsupported: `可能`, `大概`, `似乎`, `推测`, `猜测`.
 - Replace vague claims with concrete project facts.
 - Check term consistency for actors, modules, pages, APIs, tables, diagrams, and tests.
 - Confirm every paragraph either explains design purpose, design mechanism, evidence, or result.
+- Confirm every 图前说明 connects the previous paragraph to the figure and is not a mechanical caption substitute.
 - 最终语言检查 must be completed before delivering the Markdown and DOCX files.

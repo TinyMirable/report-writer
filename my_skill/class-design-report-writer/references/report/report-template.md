@@ -18,12 +18,14 @@ Word/DOCX 模板第二页是个人信息页，不需要编辑。不要修改模�
 - 不要重复创建同名章节标题。
 - 不要删除、改名、重排模板已有章节标题。
 - 若 Markdown 版本需要完整展示结构，也保持同样章节名和顺序。
+- 不能把完整报告追加到第4页之后；最终 DOCX 必须清理第3页和第4页中未替换的模板残留、示例正文、多余空页和重复章节。
 
 ## Main Sections
 
 ### 课题名称
 
 题目格式：宋体，3号，加粗，居中对齐，上下空一行。替换word中的"课题名称"并调整格式
+最终检查时必须确认 `课题名称` 前有一个空行，后有一个空行。
 
 ### 一、选题背景
 
@@ -31,7 +33,7 @@ Word/DOCX 模板第二页是个人信息页，不需要编辑。不要修改模�
 
 Explain the main problems this project should solve, the technical requirements it should meet, and the guiding idea of the design.
 
-正文必须放在 `三、过程论述` 标题下方。
+正文必须放在 `一、选题背景` 标题下方。
 ### 二、方案论证(设计理念)
 
 格式：宋体，4号，加粗，两端对齐，首行缩进2字符。
@@ -62,12 +64,17 @@ Analyze the main data, phenomena, test results, or verification results from the
 
 Summarize gains from the course design, problems encountered, how problems were solved, thoughts on debugging ability, and implementation reflections.
 
+### 参考文献
+
+最终报告必须保留 `参考文献` 结构。即使项目没有参考文献，也保留标题并让具体文献条目为空；不要编造不存在的书籍、论文、网址或访问日期。
+
 ## Body Formatting
 
 - 正文：宋体，小4号，不加粗，两端对齐，固定行距 20 磅。
 - 首行缩进 2 字符。
 - 左右缩进 0 字符。
 - 段前、段后为 0 行。
+- 5个标题 `一、选题背景`、`二、方案论证(设计理念)`、`三、过程论述`、`四、结果分析`、`五、课程设计总结` 均必须首行缩进两字符。
 
 ## Captions
 
@@ -78,3 +85,13 @@ Summarize gains from the course design, problems encountered, how problems were 
 ## References
 
 If references are included, use sequential numeric citations. Important sources must include concrete source information. Online sources should include access or publication dates when available.
+If there are no references, keep the `参考文献` heading and leave the entries blank.
+
+## Final Template Residue Check
+
+Before delivery, inspect the generated Markdown and DOCX:
+
+- 第3页和第4页不得残留模板占位正文、示例说明、未替换的 `课题名称`、重复章节标题或多余空页。
+- 正文不得追加到模板第4页之后再开始；内容应从第三页正文区域进入既有章节。
+- 封面页和个人信息页保持模板原貌，除非用户明确提供字段并要求填写。
+- 5个标题首行缩进两字符，`课题名称` 上下空一行，报告末尾有 `参考文献` 结构。

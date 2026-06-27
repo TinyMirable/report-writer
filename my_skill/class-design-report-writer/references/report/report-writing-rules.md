@@ -38,6 +38,25 @@ Write for a course design evaluator who has not opened the repository. First sta
 - Avoid unsupported claims about performance, security, usability, reliability, or completeness.
 - Prefer paragraphs for explanation; use bullet lists only when the content is a real list.
 
+## Figure Lead-In Rules
+
+Figures support the design explanation; they are not inserted for their own sake. Before each figure, explain what the report is trying to prove or clarify, why this view is needed, and how it connects to the previous paragraph. The paragraph above a figure must 起承上启下.
+
+Do not use stiff placeholder wording such as:
+
+- `为说明系统组件图所对应的设计内容，报告插入如下图示`
+- `图中内容均来自项目的`
+- `如下图所示`
+- `为了画出该图`
+
+Prefer natural design reasoning:
+
+- `根据原始需求，系统需要同时支持用户操作、业务处理和数据持久化，因此用例分析先明确参与者与功能边界。`
+- `在明确功能边界后，系统组件图用于说明界面层、业务层和数据访问层之间的依赖关系。`
+- `为展示核心功能从输入到持久化的处理路径，流程图将请求接收、参数校验、业务处理和结果返回串联起来。`
+
+After each figure, explain the main elements, relationships, dependencies, or flow shown in the figure. Do not only say that the figure comes from the project; describe the design idea represented by the figure.
+
 ## 选题背景
 
 Include:
@@ -134,6 +153,24 @@ Write a grounded reflection. It may include:
 
 Do not invent personal experiences; keep reflection consistent with the project work and evidence.
 
+## 参考文献
+
+The final report must keep a `参考文献` section after `五、课程设计总结`.
+
+- If the project has references or external sources, list them using sequential numeric citations.
+- If the project has no references, keep the `参考文献` heading and leave the concrete reference entries blank.
+- Do not fabricate books, papers, URLs, publication years, or access dates.
+
+## Final Format Check
+
+Before delivery, check the final Markdown and DOCX formatting:
+
+- The five chapter headings `一、选题背景`, `二、方案论证(设计理念)`, `三、过程论述`, `四、结果分析`, and `五、课程设计总结` must use 首行缩进两字符.
+- `课题名称` must have one blank line before it and one blank line after it.
+- The body must start on the third page of the DOCX template; do not append the real report after page 4.
+- Pages 3 and 4 must not contain leftover template residue, sample paragraphs, unreplaced placeholders, duplicate headings, or extra blank pages.
+- The final report must include the `参考文献` structure even when no concrete references exist.
+
 ## Final Language Check
 
 Before delivery, scan the final Markdown and DOCX text for analysis traces and informal language. The report must:
@@ -142,4 +179,4 @@ Before delivery, scan the final Markdown and DOCX text for analysis traces and i
 - Explain why each technical choice supports the design.
 - Describe implementation ideas instead of line-by-line code reading.
 - Provide text before and after every figure.
-- Avoid `AI`, `模型`, `阅读源码`, `从源码可以看出`, `根据代码`, `可以看到`, `可以发现`, `可能`, `推测`, and similar wording in the final report body.
+- Avoid `AI`, `模型`, `阅读源码`, `从源码可以看出`, `根据代码`, `可以看到`, `可以发现`, `可能`, `推测`, `为说明系统组件图所对应的设计内容，报告插入如下图示`, `图中内容均来自项目的`, and similar wording in the final report body.

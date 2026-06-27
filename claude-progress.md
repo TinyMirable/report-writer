@@ -93,3 +93,15 @@
 - 更新过的文件或工件：spec/课程设计报告写作skillv1.3.md、spec/skill自动启动子代理规则.md、my_skill/class-design-report-writer/SKILL.md、my_skill/class-design-report-writer/references/agents/、my_skill/class-design-report-writer/references/report/report-writing-rules.md、my_skill/class-design-report-writer/references/diagram/diagram-policy.md、my_skill/class-design-report-writer/scripts/validate_skill.py、feature_list.json、claude-progress.md、C:\Users\SKY\.codex\skills\class-design-report-writer。
 - 已知风险或未解决问题：my_skill/class-design-report-writer/assets/course-design-report-template.docx 在本轮开始时已有未提交改动，本轮未纳入提交也未回滚；v1.3 文档表格中的事实源文件名带多余空格描述，本轮按实际文件 spec/skill自动启动子代理规则.md 处理。
 - 下一步最佳动作：提交本轮多代理协作规则增强变更，供用户审阅。
+
+### Session 008
+
+- 日期：2026-06-28
+- 本轮目标：根据 spec/课程设计报告写作skill1.4.md，新增交付检查智能体G并强化最终格式与表述验收。
+- 已完成：新增 chat-006 功能项；扩展 validate_skill.py 并先运行红灯验证，确认当前 skill 缺少 G 代理、最终交付路由、图前说明禁用表述和格式验收规则；更新 SKILL.md，要求汇总产出代理F之后调度交付检查智能体G；新增 references/agents/delivery-review-agent-g.md，定义代理G对 Markdown/DOCX 的全面审查、直接修复、检查记录和未达标准处理；更新 main-agent-workflow.md 从 A-F 扩展为 A-G 工作流；更新 final-assembly-agent-f.md，要求把最终产物移交给代理G；更新 report-writing-rules.md、report-style-guide.md 和 report-template.md，强化图前说明起承上启下、禁止僵硬引入语和懒惰证据表述、5个标题首行缩进两字符、课题名称上下空一行、第3页和第4页模板残留清理、参考文献结构保留等规则；同步安装副本到 C:\Users\SKY\.codex\skills\class-design-report-writer。
+- 运行过的验证：python my_skill/class-design-report-writer/scripts/validate_skill.py my_skill/class-design-report-writer；python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py my_skill/class-design-report-writer；python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py --check my_skill/class-design-report-writer；python my_skill/class-design-report-writer/scripts/validate_skill.py C:/Users/SKY/.codex/skills/class-design-report-writer；$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py my_skill/class-design-report-writer；$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py C:/Users/SKY/.codex/skills/class-design-report-writer。
+- 已记录证据：feature_list.json 已标记 chat-006 为 passing，并记录红灯失败、代理G新增、A-G 工作流接入、F到G移交、最终格式和表述规则落地、仓库副本验证通过、同步一致性通过和安装副本验证通过证据。
+- 提交记录：本轮提交待创建。
+- 更新过的文件或工件：spec/课程设计报告写作skill1.4.md、my_skill/class-design-report-writer/SKILL.md、my_skill/class-design-report-writer/references/agents/main-agent-workflow.md、my_skill/class-design-report-writer/references/agents/final-assembly-agent-f.md、my_skill/class-design-report-writer/references/agents/delivery-review-agent-g.md、my_skill/class-design-report-writer/references/report/report-writing-rules.md、my_skill/class-design-report-writer/references/report/report-style-guide.md、my_skill/class-design-report-writer/references/report/report-template.md、my_skill/class-design-report-writer/scripts/validate_skill.py、feature_list.json、claude-progress.md、C:\Users\SKY\.codex\skills\class-design-report-writer。
+- 已知风险或未解决问题：rg.exe 在本环境中运行时报 Access is denied，本轮已改用 PowerShell 文件枚举和读取；未修改 DOCX 模板资产。
+- 下一步最佳动作：提交本轮交付检查代理G和最终验收规则增强变更，供用户审阅。

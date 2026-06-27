@@ -21,6 +21,7 @@ After the fact base exists, read `references/agents/main-agent-workflow.md` and 
 - 测试截图代理D: read `references/agents/testing-screenshot-agent-d.md` and run verification, screenshots, and testing evidence capture.
 - 图像质量检验代理E: read `references/agents/image-quality-agent-e.md` and inspect diagram and screenshot quality before final assembly.
 - 汇总产出代理F: read `references/agents/final-assembly-agent-f.md` and assemble Markdown, images, DOCX, and final checks.
+- 交付检查智能体G: read `references/agents/delivery-review-agent-g.md` after 代理F finishes, then perform the final delivery review and directly repair Markdown/DOCX delivery artifacts when format, prose, template residue, references, or figure explanation checks fail.
 
 If the environment cannot spawn subagents, execute the same roles sequentially, keep the same role boundaries, and record the limitation in `tmp/course-report-facts/06-report-evidence-map.md`.
 
@@ -35,13 +36,14 @@ If the environment cannot spawn subagents, execute the same roles sequentially, 
    - `04-implementation-analysis.md`
    - `05-testing-evidence.md`
    - `06-report-evidence-map.md`
-4. Read `references/agents/main-agent-workflow.md`, then assign subagents A-F according to the Multi-Agent Rule.
+4. Read `references/agents/main-agent-workflow.md`, then assign subagents A-G according to the Multi-Agent Rule.
 5. Have 测试截图代理D run the project's available tests or verification commands. If no test command exists, record that absence and run the smallest meaningful build, lint, smoke, or script-level verification available.
 6. Have 报告写作代理A draft the Markdown report according to `references/report/report-writing-rules.md`, `references/report/report-template.md`, and `references/report/report-style-guide.md`.
 7. Have UML图像绘制代理B and D2绘图代理C generate required diagrams and save editable sources plus exported images in the report workspace. Prefer Next AI Draw.io when available; otherwise use draw.io XML, Mermaid, PlantUML, D2, or another exportable diagram method. The final report must include images, not only source text.
 8. Have 图像质量检验代理E check all exported diagrams and screenshots. Redraw or recapture any asset that fails quality checks before assembly.
 9. Have 汇总产出代理F generate the DOCX report using `assets/course-design-report-template.docx` as the formatting template whenever possible.
-10. Main agent verifies the outputs: every major claim must map back to source files, commands, screenshots, generated diagrams, or fact documents.
+10. Have 交付检查智能体G perform the final comprehensive delivery review after 代理F. 代理G must check and repair prohibited/lazy phrasing, figure lead-in logic, heading indentation, `课题名称` spacing, template residue on pages 3-4, and the required `参考文献` structure.
+11. Main agent verifies the outputs: every major claim must map back to source files, commands, screenshots, generated diagrams, or fact documents.
 
 Do not proceed from analysis to report writing until the `tmp/course-report-facts/` files exist and contain source-backed evidence.
 
@@ -62,6 +64,7 @@ Use `assets/course-design-report-template.docx` as a fill-in template, not as a 
 Read only the references needed for the current phase:
 
 - For multi-agent orchestration, read `references/agents/main-agent-workflow.md`, then the matching `references/agents/*.md` file for each subagent role.
+- For final delivery review after report assembly, read `references/agents/delivery-review-agent-g.md`.
 - For report sections and formatting, read `references/report/report-template.md`.
 - For chapter content, figure captions, code blocks, and DOCX expectations, read `references/report/report-writing-rules.md`.
 - Before drafting or revising final report prose, read `references/report/report-style-guide.md`.
@@ -111,4 +114,5 @@ Before finishing, confirm:
 - Frontend projects include screenshots; non-frontend projects include result tables or command summaries.
 - Markdown report exists.
 - DOCX report exists and follows the template formatting as closely as the environment allows.
+- 交付检查智能体G has completed final review, repaired fixable delivery issues, and written `tmp/course-report-work/agents/G-delivery-review.md`.
 - `06-report-evidence-map.md` maps report sections to evidence.

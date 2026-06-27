@@ -161,6 +161,36 @@
         "官方 quick_validate.py 在 PYTHONUTF8=1 下对仓库副本和安装副本均输出：Skill is valid!"
       ],
       "notes": "本轮未修改既有 DOCX 模板资产；该文件在本轮前已有未提交改动，保持为用户/既有工作区改动。v1.3 需求文档中事实源文件名存在多余空格描述，但仓库实际文件为 spec/skill自动启动子代理规则.md，本轮按实际文件读取并吸收。"
+    },
+    {
+      "id": "chat-006",
+      "priority": 6,
+      "area": "skill-final-delivery-review",
+      "title": "新增交付检查智能体G并强化最终格式与表述验收",
+      "user_visible_behavior": "使用课程设计报告撰写 skill 的智能体在汇总产出代理F生成 Markdown 和 DOCX 后，会再由交付检查智能体G进行全面审查与修正，检查并修复违规表述、图前说明僵硬、章节标题首行缩进、课题名称上下空行、模板残留、参考文献结构缺失等最终交付问题。",
+      "status": "passing",
+      "verification": [
+        "python my_skill/class-design-report-writer/scripts/validate_skill.py my_skill/class-design-report-writer",
+        "python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py my_skill/class-design-report-writer",
+        "python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py --check my_skill/class-design-report-writer",
+        "python my_skill/class-design-report-writer/scripts/validate_skill.py C:/Users/SKY/.codex/skills/class-design-report-writer",
+        "$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py my_skill/class-design-report-writer",
+        "$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py C:/Users/SKY/.codex/skills/class-design-report-writer"
+      ],
+      "evidence": [
+        "红灯验证已运行：扩展 validate_skill.py 后，当前 skill 因缺少 references/agents/delivery-review-agent-g.md、SKILL G代理路由、report-writing-rules/report-style-guide 的禁用表述和图前说明规则、main-agent-workflow/F代理移交规则而失败。",
+        "SKILL.md 已新增交付检查智能体G，要求代理F产出后由代理G检查并修复违规表述、图前说明、标题缩进、课题名称空行、模板残留和参考文献结构。",
+        "已新增 references/agents/delivery-review-agent-g.md，定义代理G的输入、职责、边界、输出、检查记录、停止标准和未达标准处理。",
+        "main-agent-workflow.md 已从 A-F 扩展为 A-G 工作流，并要求代理G产出 G-delivery-review.md。",
+        "final-assembly-agent-f.md 已新增向交付检查智能体G移交最终 Markdown、DOCX 和 F-final-check.md 的规则。",
+        "report-writing-rules.md 和 report-style-guide.md 已新增图前说明必须起承上启下、禁止僵硬图示引入语和懒惰证据表述的规则。",
+        "report-template.md 已新增 5个标题首行缩进两字符、课题名称上下空一行、清理第3页和第4页模板残留、保留参考文献结构等最终格式规则，并修正选题背景正文归属。",
+        "验证通过：Skill validation passed: my_skill\\class-design-report-writer",
+        "同步完成并通过一致性检查：Skill sync check passed: C:\\Users\\SKY\\.codex\\skills\\class-design-report-writer",
+        "安装副本结构校验通过：Skill validation passed: C:\\Users\\SKY\\.codex\\skills\\class-design-report-writer",
+        "官方 quick_validate.py 在 PYTHONUTF8=1 下对仓库副本和安装副本均输出：Skill is valid!"
+      ],
+      "notes": "需求来自 spec/课程设计报告写作skill1.4.md。本功能只强化最终交付检查、格式验收和表述规则，不改动 DOCX 模板资产。"
     }
   ]
 }
