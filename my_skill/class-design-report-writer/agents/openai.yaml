@@ -1,0 +1,3 @@
+display_name: Course Design Report Writer
+short_description: Generate Chinese course design reports from real project code.
+default_prompt: Use this skill to analyze the target project, gather evidence, draw required diagrams, and produce Markdown plus DOCX course design reports.

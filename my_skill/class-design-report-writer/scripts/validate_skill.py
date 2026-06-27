@@ -1,0 +1,116 @@
+#!/usr/bin/env python3
+"""Validate the class-design-report-writer skill package."""
+
+from __future__ import annotations
+
+import argparse
+import re
+import sys
+from pathlib import Path
+
+
+REQUIRED_FILES = [
+    "SKILL.md",
+    "agents/openai.yaml",
+    "assets/course-design-report-template.docx",
+    "references/report-template.md",
+    "references/report-writing-rules.md",
+    "references/diagram-policy.md",
+    "references/evidence-and-verification.md",
+    "scripts/validate_skill.py",
+    "scripts/sync_to_codex_skills.py",
+]
+
+REQUIRED_SKILL_TERMS = [
+    "tmp/course-report-facts",
+    "用例图",
+    "系统架构图",
+    "顶层数据流图",
+    "一层数据流图",
+    "二层数据流图",
+    "包图",
+    "核心代码流程图",
+    "Markdown",
+    "DOCX",
+]
+
+
+def read_text(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+def validate_frontmatter(skill_text: str) -> list[str]:
+    errors: list[str] = []
+    match = re.match(r"^---\n(.*?)\n---\n", skill_text, re.DOTALL)
+    if not match:
+        return ["SKILL.md must start with YAML frontmatter delimited by ---"]
+
+    frontmatter = match.group(1)
+    fields: dict[str, str] = {}
+    for line in frontmatter.splitlines():
+        if ":" not in line:
+            errors.append(f"Invalid frontmatter line: {line}")
+            continue
+        key, value = line.split(":", 1)
+        fields[key.strip()] = value.strip()
+
+    if fields.get("name") != "class-design-report-writer":
+        errors.append("frontmatter name must be class-design-report-writer")
+    if not fields.get("description"):
+        errors.append("frontmatter description is required")
+    if len(frontmatter) > 1024:
+        errors.append("frontmatter must be no more than 1024 characters")
+    return errors
+
+
+def validate_skill(skill_dir: Path) -> list[str]:
+    errors: list[str] = []
+    if not skill_dir.exists():
+        return [f"skill directory does not exist: {skill_dir}"]
+    if not skill_dir.is_dir():
+        return [f"skill path is not a directory: {skill_dir}"]
+
+    for rel_path in REQUIRED_FILES:
+        path = skill_dir / rel_path
+        if not path.exists():
+            errors.append(f"missing required file: {rel_path}")
+        elif path.is_file() and path.stat().st_size == 0:
+            errors.append(f"required file is empty: {rel_path}")
+
+    skill_path = skill_dir / "SKILL.md"
+    if skill_path.exists():
+        skill_text = read_text(skill_path)
+        errors.extend(validate_frontmatter(skill_text))
+        for term in REQUIRED_SKILL_TERMS:
+            if term not in skill_text:
+                errors.append(f"SKILL.md must mention required term: {term}")
+
+    openai_yaml = skill_dir / "agents/openai.yaml"
+    if openai_yaml.exists():
+        openai_text = read_text(openai_yaml)
+        for field in ("display_name:", "short_description:", "default_prompt:"):
+            if field not in openai_text:
+                errors.append(f"agents/openai.yaml missing field: {field}")
+
+    return errors
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Validate a Codex skill package.")
+    parser.add_argument("skill_dir", type=Path, help="Path to the skill directory")
+    args = parser.parse_args()
+
+    errors = validate_skill(args.skill_dir.resolve())
+    if errors:
+        print("Skill validation failed:")
+        for error in errors:
+            print(f"- {error}")
+        return 1
+
+    print(f"Skill validation passed: {args.skill_dir}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+
