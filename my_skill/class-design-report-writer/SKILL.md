@@ -1,6 +1,6 @@
 ---
 name: class-design-report-writer
-description: Use when writing a Chinese course design report from an existing project repository, especially when the agent must analyze source code, generate required diagrams, collect test evidence, and deliver Markdown plus DOCX reports using the course design report template.
+description: Use when writing a Chinese course design report from an existing project repository, especially when the agent must coordinate multiple subagents to analyze source code, draft report prose, generate UML and D2 diagrams, collect screenshots or test evidence, inspect image quality, and deliver Markdown plus DOCX reports using the course design report template.
 ---
 
 # Class Design Report Writer
@@ -8,6 +8,21 @@ description: Use when writing a Chinese course design report from an existing pr
 ## Core Rule
 
 Treat the user's project repository as the only source of truth. Do not invent features, architecture, tests, results, screenshots, or diagrams. Before writing the report, create a fact base in the target project's `tmp/course-report-facts/` directory and write the report only from that fact base plus verifiable artifacts.
+
+## Multi-Agent Rule
+
+Use 多个子代理合作 to complete the report whenever subagent tools are available. The main agent owns planning, evidence control, integration, and final acceptance; subagents own bounded production tasks.
+
+After the fact base exists, read `references/agents/main-agent-workflow.md` and dispatch these roles with the role reference attached or summarized in each prompt:
+
+- 报告写作代理A: read `references/agents/writer-agent-a.md` and draft the Markdown report prose plus a diagram request list.
+- UML图像绘制代理B: read `references/agents/uml-agent-b.md` and draw only UML diagrams with PlantUML or an equivalent editable UML source.
+- D2绘图代理C: read `references/agents/d2-agent-c.md` and draw only D2 architecture, data-flow, and flowchart diagrams.
+- 测试截图代理D: read `references/agents/testing-screenshot-agent-d.md` and run verification, screenshots, and testing evidence capture.
+- 图像质量检验代理E: read `references/agents/image-quality-agent-e.md` and inspect diagram and screenshot quality before final assembly.
+- 汇总产出代理F: read `references/agents/final-assembly-agent-f.md` and assemble Markdown, images, DOCX, and final checks.
+
+If the environment cannot spawn subagents, execute the same roles sequentially, keep the same role boundaries, and record the limitation in `tmp/course-report-facts/06-report-evidence-map.md`.
 
 ## Required Workflow
 
@@ -20,11 +35,13 @@ Treat the user's project repository as the only source of truth. Do not invent f
    - `04-implementation-analysis.md`
    - `05-testing-evidence.md`
    - `06-report-evidence-map.md`
-4. Run the project's available tests or verification commands. If no test command exists, record that absence and run the smallest meaningful build, lint, smoke, or script-level verification available.
-5. Generate required diagrams and save editable sources plus exported images in the report workspace. Prefer Next AI Draw.io when available; otherwise use draw.io XML, Mermaid, PlantUML, or another exportable diagram method. The final report must include images, not only source text.
-6. Write the Markdown report according to `references/report-writing-rules.md` and `references/report-template.md`.
-7. Generate the DOCX report using `assets/course-design-report-template.docx` as the formatting template whenever possible.
-8. Verify the outputs: every major claim must map back to source files, commands, screenshots, generated diagrams, or fact documents.
+4. Read `references/agents/main-agent-workflow.md`, then assign subagents A-F according to the Multi-Agent Rule.
+5. Have 测试截图代理D run the project's available tests or verification commands. If no test command exists, record that absence and run the smallest meaningful build, lint, smoke, or script-level verification available.
+6. Have 报告写作代理A draft the Markdown report according to `references/report/report-writing-rules.md`, `references/report/report-template.md`, and `references/report/report-style-guide.md`.
+7. Have UML图像绘制代理B and D2绘图代理C generate required diagrams and save editable sources plus exported images in the report workspace. Prefer Next AI Draw.io when available; otherwise use draw.io XML, Mermaid, PlantUML, D2, or another exportable diagram method. The final report must include images, not only source text.
+8. Have 图像质量检验代理E check all exported diagrams and screenshots. Redraw or recapture any asset that fails quality checks before assembly.
+9. Have 汇总产出代理F generate the DOCX report using `assets/course-design-report-template.docx` as the formatting template whenever possible.
+10. Main agent verifies the outputs: every major claim must map back to source files, commands, screenshots, generated diagrams, or fact documents.
 
 Do not proceed from analysis to report writing until the `tmp/course-report-facts/` files exist and contain source-backed evidence.
 
@@ -35,7 +52,8 @@ Use `assets/course-design-report-template.docx` as a fill-in template, not as a 
 - 不要修改模板第一页: it is the cover page.
 - 不要修改模板第二页: it is the personal/student information page.
 - Start writing report body content from 第三页.
-- Preserve the existing chapter headings in the template: `一、选题背景`, `二、方案论证(设计理念)`, `三、过程论述`, `四、结果分析`, and `五、课程设计总结`.
+- 验证：第三页开头一行后是 `课题名称`，需要替换
+- Preserve the existing chapter headings in the template:`课程`, `一、选题背景`, `二、方案论证(设计理念)`, `三、过程论述`, `四、结果分析`, and `五、课程设计总结`.
 - 只在既有章节标题下方填充正文. Do not duplicate, rename, delete, or reorder the template headings unless the user explicitly asks.
 - Insert figures, tables, captions, and code excerpts under the matching existing chapter heading.
 
@@ -43,13 +61,14 @@ Use `assets/course-design-report-template.docx` as a fill-in template, not as a 
 
 Read only the references needed for the current phase:
 
-- For report sections and formatting, read `references/report-template.md`.
-- For chapter content, figure captions, code blocks, and DOCX expectations, read `references/report-writing-rules.md`.
-- Before drafting or revising final report prose, read `references/report-style-guide.md`.
-- For required diagrams and layout quality, read `references/diagram-policy.md`.
-- Before drawing any report diagram, read `references/diagram-layout-policy.md`.
-- Before drawing UML diagrams such as 用例图、类图、活动图、时序图、组件图、包图、部署图, read `references/uml-diagram-standard.md`.
-- Before drawing 系统架构图 or D2 architecture diagrams, read `references/system-architecture-diagram-standard.md`.
+- For multi-agent orchestration, read `references/agents/main-agent-workflow.md`, then the matching `references/agents/*.md` file for each subagent role.
+- For report sections and formatting, read `references/report/report-template.md`.
+- For chapter content, figure captions, code blocks, and DOCX expectations, read `references/report/report-writing-rules.md`.
+- Before drafting or revising final report prose, read `references/report/report-style-guide.md`.
+- For required diagrams and layout quality, read `references/diagram/diagram-policy.md`.
+- Before drawing any report diagram, read `references/diagram/diagram-layout-policy.md`.
+- Before drawing UML diagrams such as 用例图、类图、活动图、时序图、组件图、包图、部署图, read `references/diagram/uml-diagram-standard.md`.
+- Before drawing 系统架构图 or D2 architecture diagrams, read `references/diagram/system-architecture-diagram-standard.md`.
 - For fact gathering, verification, screenshots, and evidence mapping, read `references/evidence-and-verification.md`.
 
 ## Mandatory Report Content

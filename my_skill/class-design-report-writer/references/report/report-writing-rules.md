@@ -8,7 +8,7 @@ Write from the target project's actual source code and verification artifacts. I
 
 Write the final Markdown and DOCX reports as a course design final report from the designer's point of view. Do not expose the analysis process.
 
-Before drafting final prose, read `references/report-style-guide.md` and apply its 表述风格约束. The guide is the detailed style reference for concrete expression, concise wording, term consistency, evidence calibration, and final language checks.
+Before drafting final prose, read `references/report/report-style-guide.md` and apply its 表述风格约束. The guide is the detailed style reference for concrete expression, concise wording, term consistency, evidence calibration, and final language checks.
 
 Use design statements:
 

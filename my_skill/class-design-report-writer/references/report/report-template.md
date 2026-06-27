@@ -23,7 +23,7 @@ Word/DOCX 模板第二页是个人信息页，不需要编辑。不要修改模�
 
 ### 课题名称
 
-题目格式：宋体，3号，加粗，居中对齐，上下空一行。
+题目格式：宋体，3号，加粗，居中对齐，上下空一行。替换word中的"课题名称"并调整格式
 
 ### 一、选题背景
 
@@ -31,6 +31,7 @@ Word/DOCX 模板第二页是个人信息页，不需要编辑。不要修改模�
 
 Explain the main problems this project should solve, the technical requirements it should meet, and the guiding idea of the design.
 
+正文必须放在 `三、过程论述` 标题下方。
 ### 二、方案论证(设计理念)
 
 格式：宋体，4号，加粗，两端对齐，首行缩进2字符。

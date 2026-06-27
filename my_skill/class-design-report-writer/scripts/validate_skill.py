@@ -4,23 +4,35 @@
 from __future__ import annotations
 
 import argparse
+import io
 import re
 import sys
 from pathlib import Path
+
+
+if hasattr(sys.stdout, "buffer"):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
 
 REQUIRED_FILES = [
     "SKILL.md",
     "agents/openai.yaml",
     "assets/course-design-report-template.docx",
-    "references/report-template.md",
-    "references/report-writing-rules.md",
-    "references/report-style-guide.md",
-    "references/diagram-policy.md",
-    "references/diagram-layout-policy.md",
-    "references/uml-diagram-standard.md",
-    "references/system-architecture-diagram-standard.md",
+    "references/report/report-template.md",
+    "references/report/report-writing-rules.md",
+    "references/report/report-style-guide.md",
+    "references/diagram/diagram-policy.md",
+    "references/diagram/diagram-layout-policy.md",
+    "references/diagram/uml-diagram-standard.md",
+    "references/diagram/system-architecture-diagram-standard.md",
     "references/evidence-and-verification.md",
+    "references/agents/main-agent-workflow.md",
+    "references/agents/writer-agent-a.md",
+    "references/agents/uml-agent-b.md",
+    "references/agents/d2-agent-c.md",
+    "references/agents/testing-screenshot-agent-d.md",
+    "references/agents/image-quality-agent-e.md",
+    "references/agents/final-assembly-agent-f.md",
     "scripts/validate_skill.py",
     "scripts/sync_to_codex_skills.py",
 ]
@@ -44,16 +56,24 @@ REQUIRED_SKILL_TERMS = [
     "核心代码流程图",
     "PlantUML",
     "D2",
-    "references/report-style-guide.md",
-    "references/uml-diagram-standard.md",
-    "references/system-architecture-diagram-standard.md",
-    "references/diagram-layout-policy.md",
+    "references/report/report-style-guide.md",
+    "references/diagram/uml-diagram-standard.md",
+    "references/diagram/system-architecture-diagram-standard.md",
+    "references/diagram/diagram-layout-policy.md",
+    "多个子代理合作",
+    "报告写作代理A",
+    "UML图像绘制代理B",
+    "D2绘图代理C",
+    "测试截图代理D",
+    "图像质量检验代理E",
+    "汇总产出代理F",
+    "references/agents/main-agent-workflow.md",
     "Markdown",
     "DOCX",
 ]
 
 REQUIRED_REFERENCE_TERMS = {
-    "references/report-template.md": [
+    "references/report/report-template.md": [
         "不要修改模板第一页",
         "不要修改模板第二页",
         "第三页",
@@ -63,7 +83,7 @@ REQUIRED_REFERENCE_TERMS = {
         "三、过程论述",
         "四、结果分析",
     ],
-    "references/report-writing-rules.md": [
+    "references/report/report-writing-rules.md": [
         "系统功能结构图",
         "系统组件图",
         "用户活动图",
@@ -73,12 +93,12 @@ REQUIRED_REFERENCE_TERMS = {
         "从源码可以看出",
         "AI分析得到",
         "Never invent modules",
-        "references/report-style-guide.md",
+        "references/report/report-style-guide.md",
         "具体表达",
         "删掉空话套话",
         "术语一致",
     ],
-    "references/report-style-guide.md": [
+    "references/report/report-style-guide.md": [
         "课程设计报告表述风格约束",
         "面向课程设计评审教师",
         "先说明设计目的",
@@ -89,7 +109,7 @@ REQUIRED_REFERENCE_TERMS = {
         "事实依据",
         "最终语言检查",
     ],
-    "references/diagram-policy.md": [
+    "references/diagram/diagram-policy.md": [
         "PlantUML",
         "D2",
         "用例图",
@@ -99,18 +119,18 @@ REQUIRED_REFERENCE_TERMS = {
         "关键功能时序图",
         "系统组件图",
         "系统架构图绘制准则",
-        "references/uml-diagram-standard.md",
-        "references/system-architecture-diagram-standard.md",
-        "references/diagram-layout-policy.md",
+        "references/diagram/uml-diagram-standard.md",
+        "references/diagram/system-architecture-diagram-standard.md",
+        "references/diagram/diagram-layout-policy.md",
     ],
-    "references/diagram-layout-policy.md": [
+    "references/diagram/diagram-layout-policy.md": [
         "Diagram Layout Policy",
         "No overlapping shapes",
         "Use PlantUML",
         "Use D2",
         "Self Check",
     ],
-    "references/uml-diagram-standard.md": [
+    "references/diagram/uml-diagram-standard.md": [
         "UML图绘制标准",
         "活动图",
         "用例图",
@@ -119,13 +139,76 @@ REQUIRED_REFERENCE_TERMS = {
         "组件图",
         "包图",
     ],
-    "references/system-architecture-diagram-standard.md": [
+    "references/diagram/system-architecture-diagram-standard.md": [
         "系统架构图绘制准则",
         "分层架构",
         "矩阵式扩展",
         "低饱和度",
         "使用 D2",
         "Checklist",
+    ],
+    "references/agents/main-agent-workflow.md": [
+        "主代理",
+        "tmp/course-report-facts",
+        "分发给子代理",
+        "报告写作代理A",
+        "汇总产出代理F",
+        "停止标准",
+        "未达标准处理",
+    ],
+    "references/agents/writer-agent-a.md": [
+        "报告写作代理A",
+        "不画图",
+        "表述风格约束",
+        "写作规范",
+        "需要绘制的图像",
+        "停止标准",
+        "未达标准处理",
+    ],
+    "references/agents/uml-agent-b.md": [
+        "UML图像绘制代理B",
+        "PlantUML",
+        "不绘制需要使用D2的图",
+        "绘制情况",
+        "停止标准",
+        "未达标准处理",
+    ],
+    "references/agents/d2-agent-c.md": [
+        "D2绘图代理C",
+        "D2",
+        "不需要绘制UML图",
+        "系统架构图",
+        "停止标准",
+        "未达标准处理",
+    ],
+    "references/agents/testing-screenshot-agent-d.md": [
+        "测试截图代理D",
+        "完整测试",
+        "截图",
+        "测试结果文档",
+        "不绘制UML图和D2图",
+        "停止标准",
+        "未达标准处理",
+    ],
+    "references/agents/image-quality-agent-e.md": [
+        "图像质量检验代理E",
+        "检验代理B",
+        "检验代理C",
+        "检验代理D",
+        "不合格的原因",
+        "重新绘制截图",
+        "停止标准",
+        "未达标准处理",
+    ],
+    "references/agents/final-assembly-agent-f.md": [
+        "汇总产出代理F",
+        "Markdown",
+        "DOCX",
+        "加入图像",
+        "优化报告整体阐述风格",
+        "最后的检验",
+        "停止标准",
+        "未达标准处理",
     ],
 }
 

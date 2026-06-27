@@ -1,6 +1,6 @@
 {
   "project": "class-design-report-writter",
-  "last_updated": "2026-06-27",
+  "last_updated": "2026-06-28",
   "rules": {
     "single_active_feature": true,
     "passing_requires_evidence": true,
@@ -128,6 +128,39 @@
         "官方 quick_validate.py 在 PYTHONUTF8=1 下对安装副本输出：Skill is valid!"
       ],
       "notes": "未将 spec/表述风格约束.md 全量复制进 skill；本轮筛选最适合课程设计报告的规则，降低使用时上下文负担。"
+    },
+    {
+      "id": "chat-005",
+      "priority": 5,
+      "area": "skill-multi-agent-workflow",
+      "title": "增强 skill 自动启动子代理协作规则",
+      "user_visible_behavior": "使用课程设计报告撰写 skill 的智能体在实际写报告时，会先建立事实库，再按主代理、报告写作代理A、UML图像绘制代理B、D2绘图代理C、测试截图代理D、图像质量检验代理E、汇总产出代理F 的职责边界协作完成 Markdown 和 DOCX 报告；如果环境不能启动子代理，也会按相同角色边界顺序执行并记录限制。",
+      "status": "passing",
+      "verification": [
+        "python my_skill/class-design-report-writer/scripts/validate_skill.py my_skill/class-design-report-writer",
+        "python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py my_skill/class-design-report-writer",
+        "python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py --check my_skill/class-design-report-writer",
+        "python my_skill/class-design-report-writer/scripts/validate_skill.py C:/Users/SKY/.codex/skills/class-design-report-writer",
+        "$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py my_skill/class-design-report-writer",
+        "$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py C:/Users/SKY/.codex/skills/class-design-report-writer"
+      ],
+      "evidence": [
+        "红灯验证已运行：扩展 validate_skill.py 后，当前 skill 因缺少 references/agents/main-agent-workflow.md、A-F 子代理职责文档、SKILL 多代理关键词和新 reference 路由而失败。",
+        "SKILL.md 已新增 Multi-Agent Rule，明确需要多个子代理合作完成报告撰写，并列出报告写作代理A、UML图像绘制代理B、D2绘图代理C、测试截图代理D、图像质量检验代理E、汇总产出代理F 的调度入口。",
+        "已新增 references/agents/main-agent-workflow.md，定义主代理的事实库创建、分发给子代理、整合验收、停止标准和未达标准处理。",
+        "已新增 references/agents/writer-agent-a.md，定义报告写作代理A 的正文撰写、图像需求清单、输入输出、边界、停止标准和未达标准处理。",
+        "已新增 references/agents/uml-agent-b.md，定义 UML图像绘制代理B 的 PlantUML 图绘制职责、禁止绘制 D2 图、绘制情况文档和质量边界。",
+        "已新增 references/agents/d2-agent-c.md，定义 D2绘图代理C 的系统架构图、数据流图、流程图绘制职责，禁止绘制 UML 图。",
+        "已新增 references/agents/testing-screenshot-agent-d.md，定义测试截图代理D 的完整测试、截图、测试结果文档和失败记录职责。",
+        "已新增 references/agents/image-quality-agent-e.md，定义图像质量检验代理E 对 B、C、D 产物的质量检查、不合格原因和返工指导职责。",
+        "已新增 references/agents/final-assembly-agent-f.md，定义汇总产出代理F 将图像加入报告、优化表述风格、生成 DOCX 和最终检验的职责。",
+        "validate_skill.py 已适配当前 references/report 与 references/diagram 子目录结构，并检查 v1.3 多代理职责文档。",
+        "验证通过：Skill validation passed: my_skill\\class-design-report-writer",
+        "同步完成并通过一致性检查：Skill sync check passed: C:\\Users\\SKY\\.codex\\skills\\class-design-report-writer",
+        "安装副本结构校验通过：Skill validation passed: C:\\Users\\SKY\\.codex\\skills\\class-design-report-writer",
+        "官方 quick_validate.py 在 PYTHONUTF8=1 下对仓库副本和安装副本均输出：Skill is valid!"
+      ],
+      "notes": "本轮未修改既有 DOCX 模板资产；该文件在本轮前已有未提交改动，保持为用户/既有工作区改动。v1.3 需求文档中事实源文件名存在多余空格描述，但仓库实际文件为 spec/skill自动启动子代理规则.md，本轮按实际文件读取并吸收。"
     }
   ]
 }
