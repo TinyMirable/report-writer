@@ -64,7 +64,9 @@ Analyze the main data, phenomena, test results, or verification results from the
 
 Summarize gains from the course design, problems encountered, how problems were solved, thoughts on debugging ability, and implementation reflections.
 
-### 参考文献
+### 参考文献 
+（参考文献标题为三号，宋体，加粗，居中，上下空一行）
+（参考文献正文为五号，宋体，行距为固定值20磅,重要资料必须注明具体出处，详细到页码；网上资料注明日期。）
 
 最终报告必须保留 `参考文献` 结构。即使项目没有参考文献，也保留标题并让具体文献条目为空；不要编造不存在的书籍、论文、网址或访问日期。
 
