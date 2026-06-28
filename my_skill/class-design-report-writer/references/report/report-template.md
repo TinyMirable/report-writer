@@ -24,8 +24,9 @@ Word/DOCX 模板第二页是个人信息页，不需要编辑。不要修改模�
 
 ### 课题名称
 
-题目格式：宋体，3号，加粗，居中对齐，上下空一行。替换word中的"课题名称"并调整格式
+题目格式：宋体，3号，加粗，居中对齐，上下空一行。替换word中的"课题名称"并调整格式。
 最终检查时必须确认 `课题名称` 前有一个空行，后有一个空行。
+生成产物后必须删除模板中原本的 `课题名称` 占位文字。最终 Markdown 和 DOCX 只能保留真实课题名称，不得同时残留占位文字和真实题目。
 
 ### 一、选题背景
 
@@ -63,7 +64,7 @@ Analyze the main data, phenomena, test results, or verification results from the
 格式：宋体，4号，加粗，两端对齐，首行缩进2字符。
 
 Summarize gains from the course design, problems encountered, how problems were solved, thoughts on debugging ability, and implementation reflections.
-
+以及，课程设计过程的收获、遇到的问题，遇到问题解决问题过程的思考、程序调试能力的思考，课程设计实现过程中的收获和体会等。
 ### 参考文献 
 （参考文献标题为三号，宋体，加粗，居中，上下空一行）
 （参考文献正文为五号，宋体，行距为固定值20磅,重要资料必须注明具体出处，详细到页码；网上资料注明日期。）
@@ -94,6 +95,7 @@ If there are no references, keep the `参考文献` heading and leave the entrie
 Before delivery, inspect the generated Markdown and DOCX:
 
 - 第3页和第4页不得残留模板占位正文、示例说明、未替换的 `课题名称`、重复章节标题或多余空页。
+- 真实题目写入后，必须再次扫描并删除 `课题名称` 占位文字；不能把占位文字作为普通正文留在报告中。
 - 正文不得追加到模板第4页之后再开始；内容应从第三页正文区域进入既有章节。
 - 封面页和个人信息页保持模板原貌，除非用户明确提供字段并要求填写。
 - 5个标题首行缩进两字符，`课题名称` 上下空一行，报告末尾有 `参考文献` 结构。

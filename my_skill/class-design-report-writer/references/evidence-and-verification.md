@@ -60,3 +60,21 @@ Before final delivery, update `06-report-evidence-map.md` with:
 
 Do not claim a section is verified until it appears in the evidence map.
 
+## DOCX Render Evidence
+
+For final DOCX visual QA, run the bundled renderer with Codex workspace dependencies when they are available:
+
+```bash
+<bundled-python> scripts/render_docx.py tmp/course-report-work/final/report.docx --output_dir tmp/course-report-work/rendered-docx --verbose
+```
+
+Use the Python executable returned by the workspace dependency loader instead of system Python when possible, because the bundled runtime includes document rendering dependencies such as `pdf2image`. The renderer searches `SOFFICE_PATH`, `LIBREOFFICE_PATH`, Codex `dependencies/bin`, PATH, and Windows LibreOffice Program Files locations for LibreOffice/soffice.
+
+Record in `05-testing-evidence.md` or `06-report-evidence-map.md`:
+
+- the exact render command,
+- the LibreOffice/soffice path found by `scripts/render_docx.py`,
+- the output page PNG directory,
+- visual QA result for every rendered page,
+- or the exact lookup/import failure if rendering cannot run.
+

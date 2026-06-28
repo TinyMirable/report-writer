@@ -167,6 +167,7 @@ Before delivery, check the final Markdown and DOCX formatting:
 
 - The five chapter headings `一、选题背景`, `二、方案论证(设计理念)`, `三、过程论述`, `四、结果分析`, and `五、课程设计总结` must use 首行缩进两字符.
 - `课题名称` must have one blank line before it and one blank line after it.
+- The original `课题名称` placeholder in the Word template must be replaced and deleted. Final Markdown and DOCX must not contain an unreplaced `课题名称` placeholder next to or instead of the real project title.
 - The body must start on the third page of the DOCX template; do not append the real report after page 4.
 - Pages 3 and 4 must not contain leftover template residue, sample paragraphs, unreplaced placeholders, duplicate headings, or extra blank pages.
 - The final report must include the `参考文献` structure even when no concrete references exist.
