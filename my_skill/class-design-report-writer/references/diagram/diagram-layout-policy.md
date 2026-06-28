@@ -22,7 +22,7 @@ Requirements:
 - Keep data flow consistently from top to bottom or left to right.
 
 
-The generated diagram should meet professional architecture documentation standards comparable to diagrams produced by senior solution architects using plantuml and d2
+The generated diagram should meet professional architecture documentation standards comparable to diagrams produced by senior solution architects using PlantUML, drawio, and D2.
 
 
 ## Using Guidelines
@@ -43,12 +43,11 @@ Do NOT use PlantUML for
 × Network Topology
 × Microservice Overview
 
-Those should be implemented using D2.
+The required 系统架构图 must be implemented using drawio after inspecting `assets/系统架构图例.png`. Other cloud, infrastructure, network, and microservice diagrams can use D2 when they are not the required 系统架构图.
 
 
 Use D2 when describing
 
-• Overall Architecture
 • Distributed Systems
 • Cloud Platforms
 • Kubernetes
@@ -58,6 +57,11 @@ Use D2 when describing
 • Data Pipeline
 • Event Flow
 • Enterprise Systems
+
+Use drawio when describing
+
+• Required 系统架构图
+• Layered application architecture that must follow `assets/系统架构图例.png`
 
 Never use D2 to describe
 

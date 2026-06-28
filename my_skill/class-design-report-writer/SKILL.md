@@ -17,7 +17,7 @@ After the fact base exists, read `references/agents/main-agent-workflow.md` and 
 
 - 报告写作代理A: read `references/agents/writer-agent-a.md` and draft the Markdown report prose plus a diagram request list.
 - UML图像绘制代理B: read `references/agents/uml-agent-b.md` and draw only UML diagrams with PlantUML or an equivalent editable UML source.
-- D2绘图代理C: read `references/agents/d2-agent-c.md` and draw only D2 architecture, data-flow, and flowchart diagrams.
+- D2绘图代理C: read `references/agents/d2-agent-c.md` and draw only D2 data-flow, flowchart, pipeline, and non-system-architecture diagrams.
 - 测试截图代理D: read `references/agents/testing-screenshot-agent-d.md` and run verification, screenshots, and testing evidence capture.
 - 图像质量检验代理E: read `references/agents/image-quality-agent-e.md` and inspect diagram and screenshot quality before final assembly.
 - 报告初稿审查代理I: read `references/agents/draft-review-agent-i.md` immediately after 代理A finishes, then check whether the draft explains the course design project fully enough and whether sections, diagrams, or explanations must be supplemented before drawing and final writing continue.
@@ -42,7 +42,7 @@ If the environment cannot spawn subagents, execute the same roles sequentially, 
 5. Have 测试截图代理D run the project's available tests or verification commands. If no test command exists, record that absence and run the smallest meaningful build, lint, smoke, or script-level verification available.
 6. Have 报告写作代理A draft the Markdown report according to `references/report/report-writing-rules.md`, `references/report/report-template.md`, and `references/report/report-style-guide.md`.
 7. Have 报告初稿审查代理I review 代理A's draft before diagram production and final writing continue. If 代理I finds thin explanations, missing diagrams, missing section logic, or incomplete course-design reasoning, return the draft to 代理A or the main agent for supplementation.
-8. Have UML图像绘制代理B and D2绘图代理C generate required diagrams and save editable sources plus exported images in the report workspace. Prefer Next AI Draw.io when available; otherwise use draw.io XML, Mermaid, PlantUML, D2, or another exportable diagram method. The final report must include images, not only source text.
+8. Have UML图像绘制代理B and D2绘图代理C generate required diagrams and save editable sources plus exported images in the report workspace. 系统架构图 must be drawn with drawio after reading `assets/系统架构图例.png` and `references/diagram/system-architecture-diagram-standard.md`; 先阅读图片, then design the target architecture diagram. Other diagrams may use PlantUML, D2, Mermaid, draw.io XML, or another exportable diagram method when appropriate. The final report must include images, not only source text.
 9. Have 图像质量检验代理E check all exported diagrams and screenshots. Redraw or recapture any asset that fails quality checks before assembly.
 10. Have 报告文案增强代理H revise the report prose before 代理F and 交付检查智能体G run. 代理H must strengthen the narrative around each figure and each chapter without checking image pixels or DOCX formatting.
 11. Have 汇总产出代理F generate the DOCX report using `assets/course-design-report-template.docx` as the formatting template whenever possible.
@@ -79,7 +79,7 @@ Read only the references needed for the current phase:
 - For required diagrams and layout quality, read `references/diagram/diagram-policy.md`.
 - Before drawing any report diagram, read `references/diagram/diagram-layout-policy.md`.
 - Before drawing UML diagrams such as 用例图、类图、活动图、时序图、组件图、包图、部署图, read `references/diagram/uml-diagram-standard.md`.
-- Before drawing 系统架构图 or D2 architecture diagrams, read `references/diagram/system-architecture-diagram-standard.md`.
+- Before drawing 系统架构图, read `assets/系统架构图例.png` and `references/diagram/system-architecture-diagram-standard.md`, then use drawio/draw.io XML as the editable source format.
 - For fact gathering, verification, screenshots, and evidence mapping, read `references/evidence-and-verification.md`.
 
 ## Mandatory Report Content
@@ -105,12 +105,12 @@ At minimum, produce:
 - 顶层数据流图
 - 一层数据流图
 - 二层数据流图
-- 包图
+- 类图
 - 核心代码流程图
 
 Optional diagrams include class diagrams, ER diagrams, deployment diagrams, page flow diagrams, module dependency diagrams, or sequence diagrams when the project supports them.
 
-Use PlantUML for UML diagrams such as 用例图, 类图, 用户活动图, 关键功能时序图, 组件图, 包图, 部署图, and 状态图. Use D2 for 系统架构图 and other architecture, infrastructure, enterprise, data pipeline, or agent architecture diagrams. Check every exported diagram against `references/diagram-policy.md` before inserting it into the report.
+Use PlantUML for UML diagrams such as 用例图, 类图, 用户活动图, 关键功能时序图, 组件图, 包图, 部署图, and 状态图. Use drawio for 系统架构图; drawing it requires reading `assets/系统架构图例.png` first and following `references/diagram/system-architecture-diagram-standard.md`. Use D2 for data-flow, flowchart, pipeline, event-flow, infrastructure, enterprise, or agent architecture diagrams that are not the required 系统架构图. Check every exported diagram against `references/diagram/diagram-policy.md` before inserting it into the report.
 
 ## Output Checklist
 

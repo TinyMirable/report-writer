@@ -6,7 +6,7 @@ Use this file as the diagram checklist and routing map.
 
 - Read `references/diagram/diagram-layout-policy.md` before drawing any diagram or exporting any diagram image.
 - Read `references/diagram/uml-diagram-standard.md` before drawing UML diagrams, including 用例图、类图、用户活动图、关键功能时序图、系统组件图、包图、部署图、状态图.
-- Read `references/diagram/system-architecture-diagram-standard.md` before drawing 系统架构图 or any D2 architecture/infrastructure diagram.
+- Read `assets/系统架构图例.png` and `references/diagram/system-architecture-diagram-standard.md` before drawing 系统架构图; 先阅读图片, then follow the 系统架构图绘制准则 before the diagram is designed.
 - Keep editable diagram source files and exported images together in the report workspace.
 - Do not rely on this summary alone when creating final diagrams; use the full reference that matches the diagram type.
 
@@ -45,9 +45,14 @@ Use PlantUML for standard UML diagrams:
 - 部署图
 - 状态图
 
-Use D2 for architecture and infrastructure diagrams:
+Use drawio for 系统架构图:
 
 - 系统架构图
+
+Before drawing 系统架构图, inspect `assets/系统架构图例.png`, then follow `references/diagram/system-architecture-diagram-standard.md`. Save the editable source as drawio/draw.io XML and export PNG or SVG for DOCX insertion.
+
+Use D2 for non-system-architecture technical diagrams:
+
 - Cloud architecture
 - Infrastructure or network topology
 - Microservice overview
@@ -55,7 +60,7 @@ Use D2 for architecture and infrastructure diagrams:
 - Event flow
 - AI agent or MCP architecture
 
-Use D2 for 系统架构图 according to the 系统架构图绘制准则: layered top-down layout, low-saturation layer backgrounds, flat professional style, consistent module sizes, clear system boundaries, right-side vertical strips for cross-cutting services when useful, and simple arrows for data flow or dependency relationships.
+Do not use D2 for the required 系统架构图 unless drawio and draw.io XML creation are impossible; if a fallback is used, record the failed drawio attempt and keep an editable source.
 
 ## Layout Requirements
 

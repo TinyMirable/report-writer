@@ -230,6 +230,34 @@
         "安装副本 render_docx.py 的 find_soffice() 同样输出 C:\\Program Files\\LibreOffice\\program\\soffice.exe。"
       ],
       "notes": "需求来自 spec/课程设计报告写作skillv1.5.md。系统默认 python 为 Anaconda 且缺少 pdf2image；文档渲染应优先使用 Codex workspace dependencies 返回的 bundled Python。LibreOffice 转换时会输出 `Could not find platform independent libraries <prefix>`，但本轮实际生成 PNG 成功。"
+    },
+    {
+      "id": "chat-008",
+      "priority": 8,
+      "area": "skill-diagram-reference-update",
+      "title": "补充PlantUML基础代码并将系统架构图改为drawio",
+      "user_visible_behavior": "使用课程设计报告撰写 skill 的智能体在阅读 UML 图绘制标准时，可以直接参考 14 类 UML 图的 PlantUML 基本元素代码；绘制系统架构图时必须先阅读系统架构图例.png，再按系统架构图绘制准则使用 drawio 绘图，不再默认使用 D2 绘制系统架构图。",
+      "status": "passing",
+      "verification": [
+        "python my_skill/class-design-report-writer/scripts/validate_skill.py my_skill/class-design-report-writer",
+        "python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py my_skill/class-design-report-writer",
+        "python my_skill/class-design-report-writer/scripts/sync_to_codex_skills.py --check my_skill/class-design-report-writer",
+        "python my_skill/class-design-report-writer/scripts/validate_skill.py C:/Users/SKY/.codex/skills/class-design-report-writer",
+        "$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py my_skill/class-design-report-writer",
+        "$env:PYTHONUTF8='1'; python C:/Users/SKY/.codex/skills/.system/skill-creator/scripts/quick_validate.py C:/Users/SKY/.codex/skills/class-design-report-writer"
+      ],
+      "evidence": [
+        "红灯验证已运行：扩展 validate_skill.py 后，当前 skill 因缺少 drawio、系统架构图例.png、先阅读图片、PlantUML 基础元素关键字和 D2 代理不绘制系统架构图规则而失败。",
+        "uml-diagram-standard.md 已为活动图、用例图、交互概览图、时序图、状态图、序列图、通信UML图、类图、对象图、组件图、组合结构图、部署图、包图、剖面图补充 PlantUML基本元素代码。",
+        "SKILL.md、diagram-policy.md、diagram-layout-policy.md 和 system-architecture-diagram-standard.md 已明确系统架构图必须先阅读 assets/系统架构图例.png，再使用 drawio/draw.io XML 绘制。",
+        "d2-agent-c.md 已明确不绘制系统架构图、不使用 D2 替代 drawio 系统架构图；D2 仅保留用于数据流图、流程图、管道、事件流等非系统架构图。",
+        "image-quality-agent-e.md 已新增 drawio 系统架构图质量检查口径。",
+        "仓库副本验证通过：Skill validation passed: my_skill\\class-design-report-writer。",
+        "同步安装副本通过：Skill sync check passed: C:\\Users\\SKY\\.codex\\skills\\class-design-report-writer。",
+        "安装副本验证通过：Skill validation passed: C:\\Users\\SKY\\.codex\\skills\\class-design-report-writer。",
+        "官方 quick_validate.py 对仓库副本和安装副本均输出：Skill is valid!"
+      ],
+      "notes": "本轮只更新 skill 文档、reference 路由和验证脚本，不修改 DOCX 模板资产。PlantUML 参考基于 PlantUML 官方文档语法整理；PlantUML 未提供专用语法的交互概览图、通信图、组合结构图和剖面/Profile 图，文档中标注使用相近官方语法组合的参考写法。"
     }
   ]
 }
